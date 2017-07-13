@@ -1,0 +1,1 @@
+[@ww.label labelKey='report.location.pattern' name='reportLocationPattern' hideOnNull='true'/]

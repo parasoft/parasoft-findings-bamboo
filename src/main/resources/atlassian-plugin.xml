@@ -13,7 +13,10 @@
     <taskType key="parasoftSOAtest9xReportParserTask" name="Parasoft SOAtest 9.x Report Parser" class="com.parasoft.findings.bamboo.SOAtest9xReportParserTask">
         <description>Publishes test results to Bamboo.</description>
         <category name="test"/>
-        <!-- resource type="download" name="icon" location="images/parasoft-functional-tests-logo.png"/ -->       
+        <!-- resource type="download" name="icon" location="images/parasoft-functional-tests-logo.png"/ -->    
+        <configuration class="com.parasoft.findings.bamboo.ReportParserConfigurator"/>
+        <resource type="freemarker" name="edit" location="editReportParserTask.ftl"/>
+        <resource type="freemarker" name="view" location="viewReportParserTask.ftl"/>    
         <help link="parasoft.findings.help.link" title="parasoft.findings.help.title"/>
     </taskType>
 </atlassian-plugin>
