@@ -13,7 +13,7 @@ import javax.inject.*;
 import org.jetbrains.annotations.*;
 
 public class ReportParserConfigurator extends AbstractTaskConfigurator implements TaskTestResultsSupport {
-    private static final String DEFAULT_REPORT_LOCATION = "**/report.xml";
+    private static final String DEFAULT_REPORT_LOCATION = "**/rep*.xml";
     private static final List<String> FIELD_KEYS =
             Arrays.asList(TaskConfigConstants.CFG_TEST_RESULTS_FILE_PATTERN, TaskConfigConstants.CFG_TEST_OUTDATED_RESULTS_FILE);
     private I18nResolver i18nResolver;
