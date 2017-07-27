@@ -16,7 +16,7 @@ The Parasoft Findings Plugin provides the following tasks in Bamboo:
  
 1. Add the task to your build job.
 
-2. Specify the Report location pattern. You can also enable the 'Pick up test results that were created outside of this build' option in the Advanced settings (optional).
+2. Specify the Report location pattern. You can also enable the 'Pick up test results that were created outside of this build' option in the Advanced settings if reports were generated before the build plan starts.
 
 3. Run a build plan and view test results in the test tab.
 
