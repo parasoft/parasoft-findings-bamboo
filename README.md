@@ -15,9 +15,9 @@ Parasoft Findings provides the following tasks in Bamboo:
 ## Adding and Running the Tasks
  
 1. Add the task to your build job.
-
+![Adding a Parasoft Findings Task from the Tasks menu](images/addATask.png)
 2. Specify the Report location pattern. You can also enable the 'Pick up test results that were created outside of this build' option in the Advanced settings if reports were generated before the build plan starts.
-
+![Configuring the Parasoft Findings Task](images/configureParser.png)
 3. Run a build plan and view test results in the test tab.
 
 
