@@ -54,11 +54,9 @@
     <xsl:template match="Test">
         <xsl:choose>
             <xsl:when test="TestCase">
-                <xsl:call-template name="timeAttrIfAvailable" />
                 <xsl:for-each select="TestCase">
                     <xsl:call-template name="writeXUnitTestCase">
                         <xsl:with-param name="id" select="@testId" />
-                        <xsl:with-param name="time" select="@time" />
                         <xsl:with-param name="status" select="@status" />
                         <xsl:with-param name="tcId" select="@id" />
                     </xsl:call-template>
@@ -67,7 +65,6 @@
             <xsl:otherwise>
                 <xsl:call-template name="writeXUnitTestCase">
                     <xsl:with-param name="id" select="@id" />
-                    <xsl:with-param name="time" select="@time" />
                     <xsl:with-param name="status" select="@status" />
                     <xsl:with-param name="tcId" select="'null'" />
                 </xsl:call-template>
@@ -77,21 +74,15 @@
 
     <xsl:template name="writeXUnitTestCase">
         <xsl:param name="id" />
-        <xsl:param name="time" />
         <xsl:param name="status" />
         <xsl:param name="tcId" select="'null'" />
-
-        <xsl:variable name="timeInMillis">
-            <xsl:call-template name="timeFormat">
-                <xsl:with-param name="initTime" select="$time" />
-            </xsl:call-template>
-        </xsl:variable>
 
         <xsl:variable name="className" select="ancestor::TestSuite[position()=1]/@name" />
 
         <xsl:choose>
             <xsl:when test="$tcId='null'">
-                <testcase name="{@name}" time="{$timeInMillis}" classname="{$className}">
+                <testcase name="{@name}" classname="{$className}">
+                    <xsl:call-template name="timeAttrIfAvailable" />
                     <xsl:if test="$status!='pass'">
                         <xsl:call-template name="UnitViol">
                             <xsl:with-param name="unitViol" select="/ResultsSession/Exec/ExecViols/UnitViol[@testId=$id]" />
@@ -105,7 +96,8 @@
                 </testcase>
             </xsl:when>
             <xsl:otherwise>
-                <testcase name="{@name}" time="{$timeInMillis}" classname="{$className}">
+                <testcase name="{@name}" classname="{$className}">
+                    <xsl:call-template name="timeAttrIfAvailable" />
                     <xsl:if test="$status!='pass'">
                         <xsl:call-template name="UnitViol">
                             <xsl:with-param name="unitViol" select="/ResultsSession/Exec/ExecViols/UnitViol[@testId=$id and @tcId=$tcId]" />
