@@ -1,12 +1,12 @@
 /*
  * Copyright 2017 Parasoft Corporation
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,17 +35,17 @@ public class ReportParserConfigurator extends AbstractTaskConfigurator implement
     private I18nResolver i18nResolver;
 
     @Inject
-    public ReportParserConfigurator(@ComponentImport I18nResolver i18nResolver,
-            @ComponentImport TaskConfiguratorHelper taskConfiguratorHelper) {
+    public ReportParserConfigurator(@ComponentImport I18nResolver i18nResolver) {
         this.i18nResolver = i18nResolver;
-        this.taskConfiguratorHelper = taskConfiguratorHelper;
     }
 
     @Override
     public Map<String, String> generateTaskConfigMap(@NotNull final ActionParametersMap params,
             @Nullable final TaskDefinition previousTaskDefinition) {
         final Map<String, String> config = super.generateTaskConfigMap(params, previousTaskDefinition);
-        taskConfiguratorHelper.populateTaskConfigMapWithActionParameters(config, params, FIELD_KEYS);
+        for (String key : FIELD_KEYS) {
+            config.put(key, params.getString(key));
+        }
         return config;
     }
 
@@ -60,7 +60,9 @@ public class ReportParserConfigurator extends AbstractTaskConfigurator implement
     public void populateContextForEdit(@NotNull final Map<String, Object> context,
             @NotNull final TaskDefinition taskDefinition) {
         super.populateContextForEdit(context, taskDefinition);
-        taskConfiguratorHelper.populateContextWithConfiguration(context, taskDefinition, FIELD_KEYS);
+        for (String key : FIELD_KEYS) {
+            context.put(key, taskDefinition.getConfiguration().get(key));
+        }
     }
 
     @Override
