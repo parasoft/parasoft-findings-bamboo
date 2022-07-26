@@ -1,12 +1,12 @@
 /*
  * Copyright 2017 Parasoft Corporation
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,35 +16,41 @@
 
 package com.parasoft.findings.bamboo;
 
-import com.atlassian.bamboo.build.logger.interceptors.*;
-import com.atlassian.bamboo.build.test.*;
-import com.atlassian.bamboo.task.*;
-import com.atlassian.bamboo.v2.build.*;
+import javax.inject.Inject;
 
-public class AbstractReportParserTask implements TaskType {
+import com.atlassian.bamboo.build.logger.interceptors.ErrorMemorisingInterceptor;
+import com.atlassian.bamboo.build.test.TestCollationService;
+import com.atlassian.bamboo.task.TaskConfigConstants;
+import com.atlassian.bamboo.task.TaskContext;
+import com.atlassian.bamboo.task.TaskException;
+import com.atlassian.bamboo.task.TaskResult;
+import com.atlassian.bamboo.task.TaskResultBuilder;
+import com.atlassian.bamboo.task.TaskType;
+import com.atlassian.bamboo.v2.build.CurrentResult;
+import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
+
+public class ReportParserTask implements TaskType {
 
     private final TestCollationService testCollationService;
-    private final String xslFile;
 
-    public AbstractReportParserTask(TestCollationService testCollationService, String xslFile) {
+    @Inject
+    public ReportParserTask(@ComponentImport TestCollationService testCollationService) {
         this.testCollationService = testCollationService;
-        this.xslFile = xslFile;
     }
 
+    @Override
     public TaskResult execute(TaskContext taskContext) throws TaskException {
         ErrorMemorisingInterceptor errorLines = ErrorMemorisingInterceptor.newInterceptor();
         taskContext.getBuildLogger().getInterceptorStack().add(errorLines);
         String filePattern = taskContext.getConfigurationMap().get(
                 TaskConfigConstants.CFG_TEST_RESULTS_FILE_PATTERN);
-        boolean pickupOutdatedFiles = Boolean.valueOf(taskContext.getConfigurationMap().get(
+        boolean pickupOutdatedFiles = Boolean.parseBoolean(taskContext.getConfigurationMap().get(
                 TaskConfigConstants.CFG_TEST_OUTDATED_RESULTS_FILE));
         try {
             testCollationService.collateTestResults(taskContext, filePattern,
-                    new ReportCollector(xslFile), pickupOutdatedFiles);
-            return TaskResultBuilder.newBuilder((CommonTaskContext) taskContext)
+                    new ReportCollector(), pickupOutdatedFiles);
+            return TaskResultBuilder.newBuilder(taskContext)
                     .checkTestFailures().build();
-        } catch (Exception e) {
-            throw new TaskException("Failed to execute task", e);
         } finally {
             CurrentResult currentResult = taskContext.getCommonContext().getCurrentResult();
             currentResult.addBuildErrors(errorLines.getErrorStringList());

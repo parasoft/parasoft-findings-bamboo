@@ -3,6 +3,7 @@
         <description>${project.description}</description>
         <version>${project.version}</version>
         <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="build">1</param>
         <param name="plugin-icon">images/pluginIcon.png</param>
         <param name="plugin-logo">images/pluginLogo.png</param>
         <param name="plugin-banner">images/pluginBanner.png</param>
@@ -11,25 +12,15 @@
     </plugin-info>
 
     <!-- add our i18n resource -->
-    <resource type="i18n" name="i18n" location="com.parasoft.findings.bamboo.i18n"/>
+    <resource type="i18n" name="i18n" location="com.parasoft.findings.bamboo.i18n" />
 
-    <taskType key="parasoftSOAtest9xReportParserTask" name="Parasoft SOAtest 9.x Report Parser" class="com.parasoft.findings.bamboo.SOAtest9xReportParserTask">
+    <taskType key="parasoftReportParserTask" name="Parasoft Report Parser" class="com.parasoft.findings.bamboo.ReportParserTask">
         <description>Publishes test results to Bamboo.</description>
-        <category name="test"/>
-        <resource type="download" name="icon" location="images/icon.png"/>
-        <configuration class="com.parasoft.findings.bamboo.ReportParserConfigurator"/>
-        <resource type="freemarker" name="edit" location="editReportParserTask.ftl"/>
-        <resource type="freemarker" name="view" location="viewReportParserTask.ftl"/>
-        <help link="parasoft.findings.help.link" title="parasoft.findings.help.title"/>
-    </taskType>
-
-    <taskType key="parasoftAnalyzers10xReportParserTask" name="Parasoft Analyzers 10.x Report Parser" class="com.parasoft.findings.bamboo.Analyzers10xReportParserTask">
-        <description>Publishes test results to Bamboo.</description>
-        <category name="test"/>
-        <resource type="download" name="icon" location="images/icon.png"/>
-        <configuration class="com.parasoft.findings.bamboo.ReportParserConfigurator"/>
-        <resource type="freemarker" name="edit" location="editReportParserTask.ftl"/>
-        <resource type="freemarker" name="view" location="viewReportParserTask.ftl"/>
-        <help link="parasoft.findings.help.link" title="parasoft.findings.help.title"/>
+        <category name="test" />
+        <resource type="download" name="icon" location="images/icon.png" />
+        <configuration class="com.parasoft.findings.bamboo.ReportParserConfigurator" />
+        <resource type="freemarker" name="edit" location="editReportParserTask.ftl" />
+        <resource type="freemarker" name="view" location="viewReportParserTask.ftl" />
+        <help link="parasoft.findings.help.link" title="parasoft.findings.help.title" />
     </taskType>
 </atlassian-plugin>

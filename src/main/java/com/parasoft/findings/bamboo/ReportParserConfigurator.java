@@ -16,23 +16,29 @@
 
 package com.parasoft.findings.bamboo;
 
-import com.atlassian.bamboo.collections.*;
-import com.atlassian.bamboo.task.*;
-import com.atlassian.bamboo.utils.error.*;
-import com.atlassian.plugin.spring.scanner.annotation.imports.*;
-import com.atlassian.sal.api.message.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
+import javax.inject.Inject;
 
-import javax.inject.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import org.jetbrains.annotations.*;
+import com.atlassian.bamboo.collections.ActionParametersMap;
+import com.atlassian.bamboo.task.AbstractTaskConfigurator;
+import com.atlassian.bamboo.task.TaskConfigConstants;
+import com.atlassian.bamboo.task.TaskDefinition;
+import com.atlassian.bamboo.task.TaskTestResultsSupport;
+import com.atlassian.bamboo.utils.error.ErrorCollection;
+import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
+import com.atlassian.sal.api.message.I18nResolver;
 
 public class ReportParserConfigurator extends AbstractTaskConfigurator implements TaskTestResultsSupport {
-    private static final String DEFAULT_REPORT_LOCATION = "**/rep*.xml";
+    private static final String DEFAULT_REPORT_LOCATION = "**/rep*.xml"; //$NON-NLS-1$
     private static final List<String> FIELD_KEYS =
             Arrays.asList(TaskConfigConstants.CFG_TEST_RESULTS_FILE_PATTERN, TaskConfigConstants.CFG_TEST_OUTDATED_RESULTS_FILE);
-    private I18nResolver i18nResolver;
+    private final I18nResolver i18nResolver;
 
     @Inject
     public ReportParserConfigurator(@ComponentImport I18nResolver i18nResolver) {
@@ -70,10 +76,11 @@ public class ReportParserConfigurator extends AbstractTaskConfigurator implement
         String reportLocation = params.getString(TaskConfigConstants.CFG_TEST_RESULTS_FILE_PATTERN);
         if (reportLocation == null || reportLocation.trim().length() == 0) {
             errorCollection.addError(TaskConfigConstants.CFG_TEST_RESULTS_FILE_PATTERN,
-                    i18nResolver.getText("report.location.pattern.error"));
+                    i18nResolver.getText("report.location.pattern.error")); //$NON-NLS-1$
         }
     }
 
+    @Override
     public boolean taskProducesTestResults(TaskDefinition taskDefinition) {
         return true;
     }
