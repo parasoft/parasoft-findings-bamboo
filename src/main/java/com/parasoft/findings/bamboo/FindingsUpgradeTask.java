@@ -13,27 +13,27 @@ import java.util.Collections;
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
 
 import com.atlassian.bamboo.build.BuildDefinitionForBuild;
 import com.atlassian.bamboo.build.Job;
 import com.atlassian.bamboo.chains.Chain;
 import com.atlassian.bamboo.plan.PlanManager;
 import com.atlassian.bamboo.plan.PlanPredicates;
+import com.atlassian.plugin.spring.scanner.annotation.component.BambooComponent;
 import com.atlassian.plugin.spring.scanner.annotation.export.ExportAsService;
-import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
+import com.atlassian.plugin.spring.scanner.annotation.imports.BambooImport;
 import com.atlassian.sal.api.message.Message;
 import com.atlassian.sal.api.upgrade.PluginUpgradeTask;
 
 @ExportAsService
-@Component
+@BambooComponent
 public class FindingsUpgradeTask implements PluginUpgradeTask {
     private static final Logger log = Logger.getLogger(FindingsUpgradeTask.class);
 
     private final PlanManager planManager;
 
     @Inject
-    public FindingsUpgradeTask(@ComponentImport PlanManager planManager) {
+    public FindingsUpgradeTask(@BambooImport PlanManager planManager) {
         this.planManager = planManager;
     }
 
