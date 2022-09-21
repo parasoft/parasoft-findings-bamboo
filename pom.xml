@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.parasoft</groupId>
     <artifactId>parasoft-findings-bamboo</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7-SNAPSHOT</version>
 
     <organization>
         <name>Parasoft</name>
@@ -27,7 +27,7 @@
         <connection>scm:git:ssh://git@github.com/parasoft/parasoft-findings-bamboo.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/parasoft/parasoft-findings-bamboo.git</developerConnection>
         <url>https://github.com/parasoft/parasoft-findings-bamboo/tree/${project.scm.tag}</url>
-        <tag>v1.0.6</tag>
+        <tag>master</tag>
     </scm>
 
     <properties>
