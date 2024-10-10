@@ -53,13 +53,6 @@ public class ReportCollector implements TestReportCollector {
     private static final Logger log = Logger.getLogger(ReportCollector.class);
     private static final XsltErrorListener xsltErrorListener = new XsltErrorListener();
     private static final XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-    private static final TransformerFactory tFactory = TransformerFactory.newInstance();
-
-    static {
-        // https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html#transformerfactory
-        tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, ""); //$NON-NLS-1$
-        tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, ""); //$NON-NLS-1$
-    }
 
     public ReportCollector() {
     }
@@ -83,6 +76,11 @@ public class ReportCollector implements TestReportCollector {
 
     private InputStream getInputStream(File file, String xslFile)
             throws FileNotFoundException, TransformerException {
+        TransformerFactory tFactory = TransformerFactory.newInstance();
+        // https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html#transformerfactory
+        tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, ""); //$NON-NLS-1$
+        tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, ""); //$NON-NLS-1$
+
         StreamSource xml = new StreamSource(new FileInputStream(file));
         StreamSource xsl = new StreamSource(getClass().getResourceAsStream(xslFile));
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
