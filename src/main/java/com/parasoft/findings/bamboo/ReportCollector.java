@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -46,7 +48,6 @@ import com.atlassian.bamboo.build.test.TestCollectionResult;
 import com.atlassian.bamboo.build.test.TestCollectionResultBuilder;
 import com.atlassian.bamboo.build.test.TestReportCollector;
 import com.atlassian.bamboo.build.test.junit.JunitTestResultsParser;
-import com.google.common.collect.Sets;
 
 
 public class ReportCollector implements TestReportCollector {
@@ -93,7 +94,7 @@ public class ReportCollector implements TestReportCollector {
 
     @Override
     public Set<String> getSupportedFileExtensions() {
-        return Sets.newHashSet("xml"); //$NON-NLS-1$
+        return new HashSet<>(Collections.singleton("xml")); //$NON-NLS-1$
     }
 
     private ReportType getReportType(File from) throws XMLStreamException {
