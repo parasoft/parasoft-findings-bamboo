@@ -77,6 +77,8 @@ public class ReportCollector implements TestReportCollector {
 
     private InputStream getInputStream(File file, String xslFile)
             throws FileNotFoundException, TransformerException {
+        // Resolve the conflict of TransformerFactory and Xalan Dependency
+        System.setProperty("javax.xml.transform.TransformerFactory", "com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl");
         TransformerFactory tFactory = TransformerFactory.newInstance();
         // https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html#transformerfactory
         tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, ""); //$NON-NLS-1$
