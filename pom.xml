@@ -35,6 +35,7 @@
         <bamboo.data.version>${bamboo.version}</bamboo.data.version>
         <amps.version>9.2.6</amps.version>
         <atlassian.spring.scanner.version>3.0.3</atlassian.spring.scanner.version>
+        <saxon-he.version>12.3</saxon-he.version>
         <!-- This property ensures consistency between the key in atlassian-plugin.xml and the OSGi bundle's key. -->
         <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,6 +63,12 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>${saxon-he.version}</version>
         </dependency>
 
         <dependency>
@@ -96,6 +103,8 @@
                     <productVersion>${bamboo.version}</productVersion>
                     <productDataVersion>${bamboo.data.version}</productDataVersion>
                     <enableQuickReload>true</enableQuickReload>
+                    <!-- Maintain dependency JAR integrity, embedded in bundles -->
+                    <extractDependencies>false</extractDependencies>
                     <!-- See here for an explanation of default instructions: -->
                     <!-- https://developer.atlassian.com/docs/advanced-topics/configuration-of-instructions-in-atlassian-plugins -->
                     <instructions>
@@ -104,7 +113,14 @@
                         <Export-Package>
                         </Export-Package>
                         <!-- Add package import here -->
-                        <Import-Package>*</Import-Package>
+                        <Import-Package>
+                            <!-- Exclude unused packages -->
+                            !com.thaiopensource.*,
+                            !com.sun.org.apache.xerces.internal.jaxp,
+                            !jline.*,
+                            !org.conscrypt,
+                            *
+                        </Import-Package>
                         <!-- Ensure plugin is spring powered -->
                         <Spring-Context>*</Spring-Context>
                     </instructions>
