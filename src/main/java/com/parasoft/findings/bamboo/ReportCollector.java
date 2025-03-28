@@ -26,7 +26,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import javax.xml.XMLConstants;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -35,11 +34,15 @@ import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import javax.xml.transform.ErrorListener;
-import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+
+import net.sf.saxon.s9api.Processor;
+import net.sf.saxon.s9api.SaxonApiException;
+import net.sf.saxon.s9api.Serializer;
+import net.sf.saxon.s9api.XsltCompiler;
+import net.sf.saxon.s9api.XsltExecutable;
+import net.sf.saxon.s9api.Xslt30Transformer;
 
 import org.apache.log4j.Logger;
 import org.fusesource.hawtbuf.ByteArrayInputStream;
@@ -48,7 +51,6 @@ import com.atlassian.bamboo.build.test.TestCollectionResult;
 import com.atlassian.bamboo.build.test.TestCollectionResultBuilder;
 import com.atlassian.bamboo.build.test.TestReportCollector;
 import com.atlassian.bamboo.build.test.junit.JunitTestResultsParser;
-
 
 public class ReportCollector implements TestReportCollector {
     private static final Logger log = Logger.getLogger(ReportCollector.class);
@@ -76,19 +78,18 @@ public class ReportCollector implements TestReportCollector {
     }
 
     private InputStream getInputStream(File file, String xslFile)
-            throws FileNotFoundException, TransformerException {
-        TransformerFactory tFactory = TransformerFactory.newInstance();
-        // https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html#transformerfactory
-        tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, ""); //$NON-NLS-1$
-        tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, ""); //$NON-NLS-1$
-
+            throws SaxonApiException, FileNotFoundException {
         StreamSource xml = new StreamSource(new FileInputStream(file));
         StreamSource xsl = new StreamSource(getClass().getResourceAsStream(xslFile));
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        StreamResult target = new StreamResult(baos);
-        Transformer processor = tFactory.newTransformer(xsl);
-        processor.setErrorListener(xsltErrorListener);
-        processor.transform(xml, target);
+        Processor processor = new Processor(false);
+
+        XsltCompiler compiler = processor.newXsltCompiler();
+        XsltExecutable executable = compiler.compile(xsl);
+        Serializer target = processor.newSerializer(baos);
+        Xslt30Transformer transformer = executable.load30();
+        transformer.setErrorListener(xsltErrorListener);
+        transformer.transform(xml, target);
         return new ByteArrayInputStream(baos.toByteArray());
     }
 
