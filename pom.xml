@@ -114,11 +114,13 @@
                         </Export-Package>
                         <!-- Add package import here -->
                         <Import-Package>
-                            <!-- Exclude unused packages -->
+                            <!-- Use '!' to avoid loading packages from the OSGi bundle and use dependencies from the plugin itself -->
+                            <!-- The packages bellow which are used in Saxon dependency -->
                             !com.thaiopensource.*,
                             !com.sun.org.apache.xerces.internal.jaxp,
                             !jline.*,
                             !org.conscrypt,
+                            <!-- The packages above which are used in Saxon dependency -->
                             *
                         </Import-Package>
                         <!-- Ensure plugin is spring powered -->
