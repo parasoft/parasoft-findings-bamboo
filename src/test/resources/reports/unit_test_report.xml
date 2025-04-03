@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8'?><ResultsSession buildId="Default Project" climode="true" endTime="2024-07-04T19:19:11+08:00" execEnv="win32_x86_64" hasViols="false" id="1720081841412" lang="en_US" machine="Test" prjModule="com.parasoft:project-with-default-package" project="Default Project" tag="Unit Tests-com.parasoft:project-with-default-package-${scontrol_branch}-win32_x86_64" time="2024-07-04T19:19:10+08:00" toolDispName="Jtest" toolId="jtest" toolName="DTP Engine for Java" toolVer="2024.1.1" user="test">
+   <TestConfig machine="Test" name="Unit Tests" pseudoUrl="builtin://Unit Tests" user="test"/>
+   <Authors>
+      <Author id="dev1" name="test"/>
+   </Authors>
+   <Analyzers>
+      <Analyzer id="com.parasoft.jtest.coverage" name="Parasoft Coverage Analyzer" ver="10.7.0.20240618"/>
+      <Analyzer id="com.parasoft.jtest.unittests.analyzers.UTDataAnalyzer" name="Parasoft JUnit Analyzer" ver="10.7.0.20240618"/>
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IChangeImpactViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1"/>
+   </VersionInfos>
+   <Goals tsks="0">
+      
+   </Goals>
+   <Scope>
+      <Repositories/>
+      <Locations>
+         <Loc binHash="1125648815;4019126642;3238177698" covId="516238227,1495237307,-1072665781" hash="1741334343" locRef="1" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/Calculator.java" sym=".Calculator$Screen$Brightness:-1072665781;.Calculator$Screen:1495237307;.Calculator:516238227" totLns="27" uri="file:/C:/project/src/main/java/Calculator.java"/>
+         <Loc binHash="3583135400" covId="1022206551" hash="-662881149" locRef="2" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/Convertor.java" sym="com.parasoft.Convertor:1022206551" totLns="14" uri="file:/C:/project/src/main/java/com/parasoft/Convertor.java"/>
+         <Loc binHash="3391237104" covId="-563343909" hash="469181545" locRef="3" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/another/Convertor.java" sym="com.parasoft.another.Convertor:-563343909" totLns="14" uri="file:/C:/project/src/main/java/com/parasoft/another/Convertor.java"/>
+         <Loc binHash="1768305746" covId="1865579128" hash="473374080" locRef="4" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/differentViolations/GenerateViolations.java" sym="com.parasoft.differentViolations.GenerateViolations:1865579128" totLns="15" uri="file:/C:/project/src/main/java/com/parasoft/differentViolations/GenerateViolations.java"/>
+         <Loc binHash="557083426" covId="31915879" hash="-1706285489" locRef="5" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/interfaces/IConvertor.java" sym="com.parasoft.interfaces.IConvertor:31915879" totLns="5" uri="file:/C:/project/src/main/java/com/parasoft/interfaces/IConvertor.java"/>
+         <Loc binHash="208598476" covId="2052078758" hash="1200206342" locRef="6" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/interfaces2/ICalculator.java" sym="com.parasoft.interfaces2.ICalculator:2052078758" totLns="7" uri="file:/C:/project/src/main/java/com/parasoft/interfaces2/ICalculator.java"/>
+         <Loc binHash="2634898856;218828384;3936530852;3772837957" covId="1718134890,-2024947891,-704551445,-643246718" hash="-1917579824" locRef="7" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/nested/PhoneFactory.java" sym="com.parasoft.nested.PhoneFactory$Callable:-704551445;com.parasoft.nested.PhoneFactory:1718134890;com.parasoft.nested.PhoneFactory$Phone:-643246718;com.parasoft.nested.PhoneFactory$Brand:-2024947891" totLns="50" uri="file:/C:/project/src/main/java/com/parasoft/nested/PhoneFactory.java"/>
+         <Loc hash="2672042717" locRef="8" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="target/test-classes/CalculatorTest.class" symHash="-983371529" symId="CalculatorTest" totLns="15" uri="file:/C:/project/target/test-classes/CalculatorTest.class"/>
+         <Loc hash="4084686227" locRef="9" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="target/test-classes/com/parasoft/ConvertorTest.class" symHash="419438401" symId="com.parasoft.ConvertorTest" totLns="14" uri="file:/C:/project/target/test-classes/com/parasoft/ConvertorTest.class"/>
+         <Loc hash="1422167268" locRef="10" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="target/test-classes/com/parasoft/another/ConvertorTest.class" symHash="-1231738690" symId="com.parasoft.another.ConvertorTest" totLns="14" uri="file:/C:/project/target/test-classes/com/parasoft/another/ConvertorTest.class"/>
+         <Loc hash="1621480404" locRef="11" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="target/test-classes/com/parasoft/nested/PhoneFactoryTest.class" symHash="1656629834" symId="com.parasoft.nested.PhoneFactoryTest" totLns="13" uri="file:/C:/project/target/test-classes/com/parasoft/nested/PhoneFactoryTest.class"/>
+         <Loc hash="1204297563" locRef="12" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/test/java/com/parasoft/nested/PhoneFactoryTest.java" uri="file:/C:/project/src/test/java/com/parasoft/nested/PhoneFactoryTest.java"/>
+         <Loc hash="-637145177" locRef="13" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/test/java/CalculatorTest.java" uri="file:/C:/project/src/test/java/CalculatorTest.java"/>
+         <Loc hash="-1418152740" locRef="14" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/test/java/com/parasoft/another/ConvertorTest.java" uri="file:/C:/project/src/test/java/com/parasoft/another/ConvertorTest.java"/>
+         <Loc hash="1948962210" locRef="15" projId="com.parasoft:project-with-default-package" projPath="/com.parasoft:project-with-default-package" project="com.parasoft:project-with-default-package" resProjPath="src/test/java/com/parasoft/ConvertorTest.java" uri="file:/C:/project/src/test/java/com/parasoft/ConvertorTest.java"/>
+      </Locations>
+   </Scope>
+   
+  <SetupProblems/>
+
+   <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
+      
+      <AssocUrls>
+         <Tag disp="Requirement" name="req"/>
+         <Tag disp="Feature request" name="fr"/>
+         <Tag disp="Problem report" name="pr"/>
+         <Tag disp="Task" name="task"/>
+         <Tag disp="Asset" name="asset"/>
+         <Tag disp="Test" name="test"/>
+      </AssocUrls>
+   
+      
+      <Categories>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="This represents the findings arising from tests that have already been reviewed. This includes exceptions that have been marked as expected, assertion failures from previously reviewed tests, and any other kind of unexpected behavior that needs to be looked at (such as timeouts)." id="GROUP.UTEST.PROBL" label="Fix Unit Test Problems" name="Unit Test Problems" total="0">
+            <Category authTot="0;" authUrg="0;" id="EXC" name="Runtime Exceptions" short="exception" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="FAIL" name="Assertion Failures" short="failure" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="CON.VIOL" name="Contract Violations" short="contract violation" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="PROF.PROBL" name="Profiling Problems" short="profiling problem" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="EXEC.PROBL" name="Execution Problems" short="execution problem" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="TEST.PROBL" name="Test Problems" short="test problem" total="0"/>
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="These are the exceptions thrown by automatically generated test cases that need to be reviewed. After review they will be marked as &quot;expected&quot; or code fixed so that the exception does not occur any more." id="GROUP.UNVER.EXC" label="Review Exceptions" name="Exceptions" total="0">
+            <Category authTot="0;" authUrg="0;" id="UNVER.EXC" name="Unverified Runtime Exceptions" short="unverified exception" total="0"/>
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="These are assertion failures from automatically generated tests that have not been reviewed. This is expected to be zero when the tests are executed as soon as they are generated, but can be non-zero in cases where tests that have not been reviewed, but the execution is repeated." id="GROUP.UNVER.FAIL" label="Review Assertion Failures" name="Assertion Failures" total="0">
+            <Category authTot="0;" authUrg="0;" id="UNVER.FAIL" name="Unverified Assertion Failures" short="unverified failure" total="0"/>
+         </CategoryGroup>
+      </Categories>
+      <Projects>
+         <Project err="0" fail="0" id="com.parasoft:project-with-default-package" name="com.parasoft:project-with-default-package" pass="8" total="8">
+            <CategoryGroupStats id="GROUP.UTEST.PROBL" total="0"/>
+            <CategoryGroupStats id="GROUP.UNVER.EXC" total="0"/>
+            <CategoryGroupStats id="GROUP.UNVER.FAIL" total="0"/>
+         </Project>
+      </Projects>
+      
+  <APICoverage/>
+
+      
+  <TrafficData/>
+      
+  <EnvData/>
+      <FuncAPISecurity pentest="false">
+         
+  <Categories/>
+         
+  <Attacks/>
+      </FuncAPISecurity>
+      <Axe scan="false">
+         
+  <AxeRules/>
+      </Axe>
+      
+  <ExecViols/>
+
+      
+   <ExecutedTestsDetails type="UT">
+      <Total total="8" pass="8" name="Passed / Total" time="0:00:00.084" authErr="0;" authFail="0;">
+         <Project total="8" pass="8" name="com.parasoft:project-with-default-package" time="0:00:00.084" authErr="0;" id="com.parasoft:project-with-default-package" authFail="0;">
+            <TestSuite locRef="12" root="true" name="com.parasoft.nested.PhoneFactoryTest" id="com.parasoft.nested.PhoneFactoryTest" total="1" pass="1" time="0:00:00.007" authErr="0;" authFail="0;">
+               <Test auth="test" locRef="12" name="getIphone4()" startTime="1720091928285" id="com.parasoft.nested.PhoneFactoryTest|+|com.parasoft:project-with-default-package#PhoneFactoryTest.java#com.parasoft.nested.PhoneFactoryTest#getIphone4()" startPos="5" startLn="9" endLn="15" endPos="5" status="pass" total="1" pass="1" time="0:00:00.007" authErr="0;" authFail="0;"/>
+            </TestSuite>
+            <TestSuite locRef="13" root="true" name="CalculatorTest" id="CalculatorTest" total="2" pass="2" time="0:00:00.061" authErr="0;" authFail="0;">
+               <Test auth="test" locRef="13" name="testAdd()" startTime="1720091928179" id="CalculatorTest|+|com.parasoft:project-with-default-package#CalculatorTest.java#CalculatorTest#testAdd()" startPos="5" startLn="7" endLn="12" endPos="5" status="pass" total="1" pass="1" time="0:00:00.059" authErr="0;" authFail="0;"/>
+               <Test auth="test" locRef="13" name="testMinus()" startTime="1720091928240" id="CalculatorTest|+|com.parasoft:project-with-default-package#CalculatorTest.java#CalculatorTest#testMinus()" startPos="5" startLn="14" endLn="19" endPos="5" status="pass" total="1" pass="1" time="0:00:00.002" authErr="0;" authFail="0;"/>
+            </TestSuite>
+            <TestSuite locRef="14" root="true" name="com.parasoft.another.ConvertorTest" id="com.parasoft.another.ConvertorTest" total="2" pass="2" time="0:00:00.011" authErr="0;" authFail="0;">
+               <Test auth="test" locRef="14" name="convertToString()" startTime="1720091928261" id="com.parasoft.another.ConvertorTest|+|com.parasoft:project-with-default-package#ConvertorTest.java#com.parasoft.another.ConvertorTest#convertToString()" startPos="5" startLn="9" endLn="14" endPos="5" status="pass" total="1" pass="1" time="0:00:00.002" authErr="0;" authFail="0;"/>
+               <Test auth="test" locRef="14" name="name()" startTime="1720091928250" id="com.parasoft.another.ConvertorTest|+|com.parasoft:project-with-default-package#ConvertorTest.java#com.parasoft.another.ConvertorTest#name()" startPos="5" startLn="16" endLn="21" endPos="5" status="pass" total="1" pass="1" time="0:00:00.009" authErr="0;" authFail="0;"/>
+            </TestSuite>
+            <TestSuite locRef="15" root="true" name="com.parasoft.ConvertorTest" id="com.parasoft.ConvertorTest" total="3" pass="3" time="0:00:00.005" authErr="0;" authFail="0;">
+               <Test auth="test" locRef="15" name="convertToString1()" startTime="1720091928271" id="com.parasoft.ConvertorTest|+|com.parasoft:project-with-default-package#ConvertorTest.java#com.parasoft.ConvertorTest#convertToString1()" startPos="5" startLn="9" endLn="14" endPos="5" status="pass" total="1" pass="1" time="0:00:00.003" authErr="0;" authFail="0;"/>
+               <Test auth="test" locRef="15" name="convertToString2()" startTime="1720091928276" id="com.parasoft.ConvertorTest|+|com.parasoft:project-with-default-package#ConvertorTest.java#com.parasoft.ConvertorTest#convertToString2()" startPos="5" startLn="16" endLn="21" endPos="5" status="pass" total="1" pass="1" time="0:00:00.000" authErr="0;" authFail="0;"/>
+               <Test auth="test" locRef="15" name="convertToString3()" startTime="1720091928278" id="com.parasoft.ConvertorTest|+|com.parasoft:project-with-default-package#ConvertorTest.java#com.parasoft.ConvertorTest#convertToString3()" startPos="5" startLn="23" endLn="28" endPos="5" status="pass" total="1" pass="1" time="0:00:00.002" authErr="0;" authFail="0;"/>
+            </TestSuite>
+         </Project>
+      </Total>
+   </ExecutedTestsDetails>
+
+      
+  <FuncTestDetails/>
+      <Coverage>
+         <Types>
+            <CvgType cvgDecor="Marker" dispCvg="executable lines" dispId="Line" dispName="Line Coverage" dispNoCvg="no executable lines" id="LC"/>
+         </Types>
+         <CvgStats>
+            <CvgInfo elem="Total" exp="1" num="32" total="48" val="67">
+               <CvgInfo elem="com.parasoft:project-with-default-package" exp="1" num="32" total="48" val="67">
+                  <CvgInfo elem="src/main/java" exp="1" num="32" total="48" val="67">
+                     <CvgInfo elem="com/parasoft" exp="1" num="18" total="34" val="53">
+                        <CvgInfo elem="another" exp="1" num="3" total="3" val="100">
+                           <CvgInfo elem="Convertor.java" num="3" total="3" val="100">
+                              <CvgInfo elem="Convertor" num="3" total="3" val="100">
+                                 <CvgInfo elem="Convertor()" num="1" total="1" val="100"/>
+                                 <CvgInfo elem="convertToString( int )" num="1" total="1" val="100"/>
+                                 <CvgInfo elem="name()" num="1" total="1" val="100"/>
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="differentViolations" exp="1" num="0" total="8" val="0">
+                           <CvgInfo elem="GenerateViolations.java" num="0" total="8" val="0">
+                              <CvgInfo elem="GenerateViolations" num="0" total="8" val="0">
+                                 <CvgInfo elem="GenerateViolations()" num="0" total="1" val="0"/>
+                                 <CvgInfo elem="generateViolations()" num="0" total="7" val="0"/>
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="interfaces2" exp="1" num="1" total="1" val="100">
+                           <CvgInfo elem="ICalculator.java" num="1" total="1" val="100">
+                              <CvgInfo elem="ICalculator" num="1" total="1" val="100">
+                                 <CvgInfo elem="minus( int, int )" num="1" total="1" val="100"/>
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="nested" exp="1" num="12" total="19" val="63">
+                           <CvgInfo elem="PhoneFactory.java" num="12" total="19" val="63">
+                              <CvgInfo elem="PhoneFactory" num="12" total="19" val="63">
+                                 <CvgInfo elem="PhoneFactory$Brand" num="4" total="4" val="100">
+                                    <CvgInfo elem="PhoneFactory$Brand( java.lang.String, int )" num="1" total="1" val="100"/>
+                                    <CvgInfo elem="class initialization()" num="2" total="2" val="100"/>
+                                    <CvgInfo elem="valueOf( java.lang.String )" num="1" total="1" val="100"/>
+                                 </CvgInfo>
+                                 <CvgInfo elem="PhoneFactory$Phone" num="7" total="13" val="54">
+                                    <CvgInfo elem="PhoneFactory$Phone( java.lang.String, com.parasoft.nested.PhoneFactory$Brand )" num="4" total="4" val="100"/>
+                                    <CvgInfo elem="PhoneFactory$Phone()" num="0" total="4" val="0"/>
+                                    <CvgInfo elem="call911()" num="0" total="2" val="0"/>
+                                    <CvgInfo elem="getBrand()" num="1" total="1" val="100"/>
+                                    <CvgInfo elem="getName()" num="1" total="1" val="100"/>
+                                    <CvgInfo elem="toString()" num="1" total="1" val="100"/>
+                                 </CvgInfo>
+                                 <CvgInfo elem="PhoneFactory()" num="0" total="1" val="0"/>
+                                 <CvgInfo elem="getIphone4()" num="1" total="1" val="100"/>
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="Convertor.java" num="2" total="3" val="67">
+                           <CvgInfo elem="Convertor" num="2" total="3" val="67">
+                              <CvgInfo elem="Convertor()" num="1" total="1" val="100"/>
+                              <CvgInfo elem="convertToString( int )" num="1" total="1" val="100"/>
+                              <CvgInfo elem="name()" num="0" total="1" val="0"/>
+                           </CvgInfo>
+                        </CvgInfo>
+                     </CvgInfo>
+                     <CvgInfo elem="Calculator.java" num="14" total="14" val="100">
+                        <CvgInfo elem="Calculator" num="14" total="14" val="100">
+                           <CvgInfo elem="Calculator$Screen" num="9" total="9" val="100">
+                              <CvgInfo elem="Calculator$Screen$Brightness" num="4" total="4" val="100">
+                                 <CvgInfo elem="Calculator$Screen$Brightness( java.lang.String, int )" num="1" total="1" val="100"/>
+                                 <CvgInfo elem="class initialization()" num="2" total="2" val="100"/>
+                                 <CvgInfo elem="valueOf( java.lang.String )" num="1" total="1" val="100"/>
+                              </CvgInfo>
+                              <CvgInfo elem="Calculator$Screen( Calculator$Screen$Brightness )" num="3" total="3" val="100"/>
+                              <CvgInfo elem="showResult( int )" num="2" total="2" val="100"/>
+                           </CvgInfo>
+                           <CvgInfo elem="Calculator()" num="2" total="2" val="100"/>
+                           <CvgInfo elem="add( int, int )" num="3" total="3" val="100"/>
+                        </CvgInfo>
+                     </CvgInfo>
+                  </CvgInfo>
+               </CvgInfo>
+            </CvgInfo>
+         </CvgStats>
+         
+      </Coverage>
+   </Exec>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>
