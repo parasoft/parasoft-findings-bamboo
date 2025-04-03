@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8'?><ResultsSession buildId="Default Project" climode="true" endTime="2024-07-05T14:47:19+08:00" execEnv="win32_x86_64" hasViols="true" id="1720151929305" lang="en_US" machine="Test" prjModule="Parasoft.Dottest.Examples.Bank" project="Default Project" tag="Default Project" time="2024-07-05T14:47:08+08:00" toolDispName="dotTEST" toolId="dottest" toolName="DTP Engine for .NET" toolVer="2024.1.0" user="test">
+   <TestConfig machine="Test" name="dottest_settings" pseudoUrl="C:\project\dottest_settings.properties" user="test"/>
+   <Authors>
+      <Author id="dev1" name="test"/>
+   </Authors>
+   <Analyzers>
+      <Analyzer id="com.parasoft.xtest.dupcode.parser" name="Code Duplication Parser" ver="10.7.0.20240508"/>
+      <Analyzer id="com.parasoft.dottest" name="Parasoft dotTEST" ver="10.7.0.1518"/>
+      <Analyzer id="com.parasoft.dottest.dupcode" name="Code Duplication Detector" ver="10.7.0.20240508"/>
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IChangeImpactViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1"/>
+   </VersionInfos>
+   <Goals tsks="42">
+      
+   </Goals>
+   <Scope>
+      <Repositories/>
+      <Locations>
+         <Loc hash="-1037776574" locRef="1" projId="Parasoft.Dottest.Examples.Bank" projPath="BankExample.NET/Parasoft.Dottest.Examples.Bank" project="Parasoft.Dottest.Examples.Bank" resProjPath="AccountNumber.cs" totLns="90" uri="file:/C:/project/bankexample.net/Parasoft.Dottest.Examples.Bank/AccountNumber.cs"/>
+         <Loc hash="225911240" locRef="2" projId="Parasoft.Dottest.Examples.Bank" projPath="BankExample.NET/Parasoft.Dottest.Examples.Bank" project="Parasoft.Dottest.Examples.Bank" resProjPath="Bank.cs" totLns="156" uri="file:/C:/project/bankexample.net/Parasoft.Dottest.Examples.Bank/Bank.cs"/>
+         <Loc hash="33954980" locRef="3" projId="Parasoft.Dottest.Examples.Bank" projPath="BankExample.NET/Parasoft.Dottest.Examples.Bank" project="Parasoft.Dottest.Examples.Bank" resProjPath="BankAccount.cs" totLns="49" uri="file:/C:/project/bankexample.net/Parasoft.Dottest.Examples.Bank/BankAccount.cs"/>
+         <Loc hash="190994750" locRef="4" projId="Parasoft.Dottest.Examples.Bank" projPath="BankExample.NET/Parasoft.Dottest.Examples.Bank" project="Parasoft.Dottest.Examples.Bank" resProjPath="BankUser.cs" totLns="43" uri="file:/C:/project/bankexample.net/Parasoft.Dottest.Examples.Bank/BankUser.cs"/>
+         <Loc hash="2123378625" locRef="5" projId="Parasoft.Dottest.Examples.Bank" projPath="BankExample.NET/Parasoft.Dottest.Examples.Bank" project="Parasoft.Dottest.Examples.Bank" resProjPath="CurrencyExchangeConverter.cs" totLns="71" uri="file:/C:/project/bankexample.net/Parasoft.Dottest.Examples.Bank/CurrencyExchangeConverter.cs"/>
+      </Locations>
+   </Scope>
+   
+  <SetupProblems>
+    <Problem msg="Source Control problems:" sev="1" totErrs="1" type="SourceControl">
+      <ErrorList>
+        <Error val="None of supported source controls is enabled in settings. The report will not contain any source control references."/>
+      </ErrorList>
+    </Problem>
+    <Problem msg="The test configuration contains the following rules which were removed from dotTEST:" sev="1" totErrs="32" type="RMC">
+      <ErrorList>
+        <Error val="The rule CS.SC has been removed."/>
+        <Error val="The rule BD.PB.INTOVERF has been removed and should be replaced with BD.PB.INTWRAP, BD.PB.INTDL, BD.PB.INTVC in your test configuration."/>
+        <Error val="The rule CLS.ACNM has been removed."/>
+        <Error val="The rule OOM.MLCI has been removed and should be replaced with METRIC.IDOC in your test configuration."/>
+        <Error val="The rule CS.MLC has been removed and should be replaced with METRIC.NOPLIM in your test configuration."/>
+        <Error val="The rule CS.OOM.MI has been removed and should be replaced with METRIC.MI in your test configuration."/>
+        <Error val="The rule CLS.MTV has been removed."/>
+        <Error val="The rule BD.PB.POVR has been removed and should be replaced with BD.PB.VOVR in your test configuration."/>
+        <Error val="The rule SEC.MSCPV has been removed."/>
+        <Error val="The rule PB.BOXING has been removed."/>
+      </ErrorList>
+    </Problem>
+  </SetupProblems>
+
+   <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:03">
+      <Projects>
+         <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="19" checkedLns="1030" id="Parasoft.Dottest.Examples.Bank" name="Parasoft.Dottest.Examples.Bank" qfixErrs="0" suppErrs="0" totErrs="19" totFiles="19" totLns="1030"/>
+      </Projects>
+      
+      
+      <Rules>
+         <CategoriesList>
+            <Category authTot="5;" authUrg="5;" desc="Code Duplication Detection" name="CDD" rules="4" total="5"/>
+
+         </CategoriesList>
+         <RulesList>
+            <Rule analyzer="com.parasoft.xtest.dupcode.parser" authTot="4;" authUrg="4;" cat="CDD" desc="Avoid method duplication" id="CDD.DUPM" sev="2" total="4"/>
+            <Rule analyzer="com.parasoft.xtest.dupcode.parser" authTot="0;" authUrg="0;" cat="CDD" desc="Avoid types duplication" id="CDD.DUPT" sev="2" total="0"/>
+            <Rule analyzer="com.parasoft.xtest.dupcode.parser" authTot="13;" authUrg="13;" cat="CDD" desc="Avoid code duplication" id="CDD.DUPC" sev="3" total="13"/>
+            <Rule analyzer="com.parasoft.xtest.dupcode.parser" authTot="2;" authUrg="2;" cat="CDD" desc="Avoid string literal duplication" id="CDD.DUPS" sev="3" total="2"/>
+         </RulesList>
+         <SeverityList>
+            <Severity authTot="4;" authUrg="4;" id="2" total="4"/>
+            <Severity authTot="15;" authUrg="15;" id="3" total="15"/>
+         </SeverityList>
+      </Rules>
+      
+  <Supps/>
+
+      
+  <StdViols>
+    <DupViol msg="Duplicated code: int digit;" ln="21" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" locStartln="21" sev="3" auth="test" locRef="1" rule="CDD.DUPC" lnHash="-1880120833" rule.header="Avoid code duplication" tool=".test" lineHash="-1880120833" unbViolId="9f43e38d-c66c-31ba-92c5-2d6d153e8aa9" locStartPos="16" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="a9736d7e-d396-3399-b43d-0aa529646246" locType="sr" locEndPos="26" urgent="true" hash="-1037776574" locEndLn="21" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="-1880120833" ln="21" srcRngStartPos="16" srcRngEndPos="26" locRef="1" locType="sr" srcRnghash="-1037776574" srcRngStartln="21" srcRngEndLn="21" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" desc="[Line 21] Duplicated code in file: 'AccountNumber.cs'" rngLn="21"/>
+        <ElDesc lineHash="-1880120833" ln="77" srcRngStartPos="16" srcRngEndPos="26" locRef="1" locType="sr" srcRnghash="-1037776574" srcRngStartln="77" srcRngEndLn="77" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" desc="[Line 77] Duplicated code in file: 'AccountNumber.cs'" rngLn="77"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated string: &quot;Wrong account number: &quot;" ln="28" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" locStartln="28" sev="3" auth="test" locRef="1" rule="CDD.DUPS" lnHash="1641499107" rule.header="Avoid string literal duplication" tool=".test" lineHash="1641499107" unbViolId="33d009be-f8c3-33af-bde5-822c1d6ad932" locStartPos="46" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="5a3f17a1-2fde-306e-95bb-e63c42002dad" locType="sr" locEndPos="70" urgent="true" hash="-1037776574" locEndLn="28" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="1641499107" ln="28" srcRngStartPos="46" srcRngEndPos="70" locRef="1" locType="sr" srcRnghash="-1037776574" srcRngStartln="28" srcRngEndLn="28" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" desc="[Line 28] Duplicated string in file: 'AccountNumber.cs'" rngLn="28"/>
+        <ElDesc lineHash="-1918049269" ln="84" srcRngStartPos="46" srcRngEndPos="70" locRef="1" locType="sr" srcRnghash="-1037776574" srcRngStartln="84" srcRngEndLn="84" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" desc="[Line 84] Duplicated string in file: 'AccountNumber.cs'" rngLn="84"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: { return false; }" ln="58" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" locStartln="58" sev="3" auth="test" locRef="1" rule="CDD.DUPC" lnHash="1178724475" rule.header="Avoid code duplication" tool=".test" lineHash="1178724475" unbViolId="dc38120c-eb56-3205-8300-5664b6db2cac" locStartPos="12" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="6025937c-ab2e-35b6-ac51-82711086c883" locType="sr" locEndPos="13" urgent="true" hash="-1037776574" locEndLn="60" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="1178724475" ln="58" srcRngStartPos="12" srcRngEndPos="13" locRef="1" locType="sr" srcRnghash="-1037776574" srcRngStartln="58" srcRngEndLn="60" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" desc="[Line 58] Duplicated code in file: 'AccountNumber.cs'" rngLn="58"/>
+        <ElDesc lineHash="81780859" ln="64" srcRngStartPos="16" srcRngEndPos="17" locRef="1" locType="sr" srcRnghash="-1037776574" srcRngStartln="64" srcRngEndLn="66" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" desc="[Line 64] Duplicated code in file: 'AccountNumber.cs'" rngLn="64"/>
+        <ElDesc lineHash="1178724475" ln="29" srcRngStartPos="12" srcRngEndPos="13" locRef="4" locType="sr" srcRnghash="190994750" srcRngStartln="29" srcRngEndLn="31" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/BankUser.cs" desc="[Line 29] Duplicated code in file: 'BankUser.cs'" rngLn="29"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: return true;" ln="68" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" locStartln="68" sev="3" auth="test" locRef="1" rule="CDD.DUPC" lnHash="-817364611" rule.header="Avoid code duplication" tool=".test" lineHash="-817364611" unbViolId="7cd9c6ca-285b-3576-abcd-f07e4d9d6971" locStartPos="12" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="58880fe1-43a0-35f4-a6b0-1b5cc133ddcd" locType="sr" locEndPos="24" urgent="true" hash="-1037776574" locEndLn="68" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="-817364611" ln="68" srcRngStartPos="12" srcRngEndPos="24" locRef="1" locType="sr" srcRnghash="-1037776574" srcRngStartln="68" srcRngEndLn="68" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" desc="[Line 68] Duplicated code in file: 'AccountNumber.cs'" rngLn="68"/>
+        <ElDesc lineHash="14739560" ln="32" srcRngStartPos="12" srcRngEndPos="25" locRef="4" locType="sr" srcRnghash="190994750" srcRngStartln="32" srcRngEndLn="32" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/BankUser.cs" desc="[Line 32] Duplicated code in file: 'BankUser.cs'" rngLn="32"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated implementation of method 'AddAccount' : '{ IList&lt;BankAccount> accounts; if (!_accounts.TryGetValue...'" ln="38" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locStartln="38" sev="2" auth="test" locRef="2" rule="CDD.DUPM" lnHash="1508372603" rule.header="Avoid method duplication" tool=".test" lineHash="1508372603" unbViolId="7b42a640-bdd7-3638-91e2-73e36c906e31" locStartPos="8" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="4ac65843-95c1-3d91-af78-fbec4f66fc46" locType="sr" locEndPos="9" urgent="true" hash="225911240" locEndLn="47" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="1508372603" ln="38" srcRngStartPos="8" srcRngEndPos="9" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="38" srcRngEndLn="47" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 38] Duplicated method in file: 'Bank.cs'" rngLn="38"/>
+        <ElDesc lineHash="1508372603" ln="50" srcRngStartPos="8" srcRngEndPos="9" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="50" srcRngEndLn="59" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 50] Duplicated method in file: 'Bank.cs'" rngLn="50"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: IList&lt;BankAccount> accounts; if (!_accounts.TryGetValue(a..." ln="39" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locStartln="39" sev="3" auth="test" locRef="2" rule="CDD.DUPC" lnHash="1290719671" rule.header="Avoid code duplication" tool=".test" lineHash="1290719671" unbViolId="f2aad7f3-90a4-384b-b7c9-6a83e3b7c304" locStartPos="12" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="151b0978-9008-39dd-989d-eb9a553f9bd1" locType="sr" locEndPos="62" urgent="true" hash="225911240" locEndLn="46" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="1290719671" ln="39" srcRngStartPos="12" srcRngEndPos="62" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="39" srcRngEndLn="46" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 39] Duplicated code in file: 'Bank.cs'" rngLn="39"/>
+        <ElDesc lineHash="1290719671" ln="51" srcRngStartPos="12" srcRngEndPos="62" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="51" srcRngEndLn="58" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 51] Duplicated code in file: 'Bank.cs'" rngLn="51"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: IList&lt;BankAccount> accounts = GetAccounts(user);" ln="75" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locStartln="75" sev="3" auth="test" locRef="2" rule="CDD.DUPC" lnHash="932210696" rule.header="Avoid code duplication" tool=".test" lineHash="932210696" unbViolId="7b9474e2-530a-3904-b8aa-353f70aec115" locStartPos="12" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="14bd29dc-6f52-3e63-bda4-8ed4bf38182b" locType="sr" locEndPos="60" urgent="true" hash="225911240" locEndLn="75" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="932210696" ln="75" srcRngStartPos="12" srcRngEndPos="60" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="75" srcRngEndLn="75" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 75] Duplicated code in file: 'Bank.cs'" rngLn="75"/>
+        <ElDesc lineHash="932210696" ln="142" srcRngStartPos="12" srcRngEndPos="60" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="142" srcRngEndLn="142" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 142] Duplicated code in file: 'Bank.cs'" rngLn="142"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: int count = 0;" ln="76" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locStartln="76" sev="3" auth="test" locRef="2" rule="CDD.DUPC" lnHash="-1574173168" rule.header="Avoid code duplication" tool=".test" lineHash="-1574173168" unbViolId="8305c21c-d377-3638-b7f7-484206bcda11" locStartPos="12" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="dfa66936-4e14-3a2c-9608-7be8afdc5406" locType="sr" locEndPos="26" urgent="true" hash="225911240" locEndLn="76" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="-1574173168" ln="76" srcRngStartPos="12" srcRngEndPos="26" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="76" srcRngEndLn="76" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 76] Duplicated code in file: 'Bank.cs'" rngLn="76"/>
+        <ElDesc lineHash="-1574173168" ln="94" srcRngStartPos="12" srcRngEndPos="26" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="94" srcRngEndLn="94" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 94] Duplicated code in file: 'Bank.cs'" rngLn="94"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated string: &quot;USD&quot;" ln="79" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locStartln="79" sev="3" auth="test" locRef="2" rule="CDD.DUPS" lnHash="-1210635292" rule.header="Avoid string literal duplication" tool=".test" lineHash="-1210635292" unbViolId="8272f9d7-9670-38e6-a731-356e29f2b0d5" locStartPos="53" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="64561e2c-cc8e-3e72-8b77-aa0df2b0ca14" locType="sr" locEndPos="58" urgent="true" hash="225911240" locEndLn="79" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="-1210635292" ln="79" srcRngStartPos="53" srcRngEndPos="58" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="79" srcRngEndLn="79" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 79] Duplicated string in file: 'Bank.cs'" rngLn="79"/>
+        <ElDesc lineHash="1593167590" ln="118" srcRngStartPos="84" srcRngEndPos="89" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="118" srcRngEndLn="118" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 118] Duplicated string in file: 'Bank.cs'" rngLn="118"/>
+        <ElDesc lineHash="1955442656" ln="130" srcRngStartPos="82" srcRngEndPos="87" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="130" srcRngEndLn="130" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 130] Duplicated string in file: 'Bank.cs'" rngLn="130"/>
+        <ElDesc lineHash="-1392464517" ln="140" srcRngStartPos="55" srcRngEndPos="60" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="140" srcRngEndLn="140" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 140] Duplicated string in file: 'Bank.cs'" rngLn="140"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: { count++; }" ln="80" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locStartln="80" sev="3" auth="test" locRef="2" rule="CDD.DUPC" lnHash="81780859" rule.header="Avoid code duplication" tool=".test" lineHash="81780859" unbViolId="f5de9cc4-293c-303f-b0ba-d4e2c8590ad1" locStartPos="16" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="ce94d717-20ee-320a-8ed7-750cf5712ba8" locType="sr" locEndPos="17" urgent="true" hash="225911240" locEndLn="82" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="81780859" ln="80" srcRngStartPos="16" srcRngEndPos="17" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="80" srcRngEndLn="82" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 80] Duplicated code in file: 'Bank.cs'" rngLn="80"/>
+        <ElDesc lineHash="-742270853" ln="102" srcRngStartPos="20" srcRngEndPos="21" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="102" srcRngEndLn="104" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 102] Duplicated code in file: 'Bank.cs'" rngLn="102"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: { }" ln="84" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locStartln="84" sev="3" auth="test" locRef="2" rule="CDD.DUPC" lnHash="81780859" rule.header="Avoid code duplication" tool=".test" lineHash="81780859" unbViolId="e335dda3-e558-3aa8-b319-260321d350fa" locStartPos="16" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="eb2b9b0c-0e25-381b-a9f4-71b30d78e2db" locType="sr" locEndPos="17" urgent="true" hash="225911240" locEndLn="86" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="81780859" ln="84" srcRngStartPos="16" srcRngEndPos="17" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="84" srcRngEndLn="86" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 84] Duplicated code in file: 'Bank.cs'" rngLn="84"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: return count;" ln="87" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locStartln="87" sev="3" auth="test" locRef="2" rule="CDD.DUPC" lnHash="-1510627844" rule.header="Avoid code duplication" tool=".test" lineHash="-1510627844" unbViolId="ca8112d4-9dd5-3d2e-83a8-dfeb801b91ba" locStartPos="16" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="a2b60181-c903-30da-870f-5650c4583ae6" locType="sr" locEndPos="29" urgent="true" hash="225911240" locEndLn="87" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="-1510627844" ln="87" srcRngStartPos="16" srcRngEndPos="29" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="87" srcRngEndLn="87" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 87] Duplicated code in file: 'Bank.cs'" rngLn="87"/>
+        <ElDesc lineHash="-57954820" ln="89" srcRngStartPos="12" srcRngEndPos="25" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="89" srcRngEndLn="89" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 89] Duplicated code in file: 'Bank.cs'" rngLn="89"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: DateTime now = DateTime.Now; OutgoingTransfer outgoing = ..." ln="116" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locStartln="116" sev="3" auth="test" locRef="2" rule="CDD.DUPC" lnHash="1385740998" rule.header="Avoid code duplication" tool=".test" lineHash="1385740998" unbViolId="f5149535-d060-374d-9e51-9ca0d982ba42" locStartPos="16" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="c18c4b35-ac9b-3623-bc43-eeb58bcdff9c" locType="sr" locEndPos="37" urgent="true" hash="225911240" locEndLn="119" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="1385740998" ln="116" srcRngStartPos="16" srcRngEndPos="37" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="116" srcRngEndLn="119" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 116] Duplicated code in file: 'Bank.cs'" rngLn="116"/>
+        <ElDesc lineHash="1385740998" ln="128" srcRngStartPos="16" srcRngEndPos="37" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="128" srcRngEndLn="131" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 128] Duplicated code in file: 'Bank.cs'" rngLn="128"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: outgoing.Apply();" ln="123" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locStartln="123" sev="3" auth="test" locRef="2" rule="CDD.DUPC" lnHash="1997690254" rule.header="Avoid code duplication" tool=".test" lineHash="1997690254" unbViolId="956ede35-bcfc-3594-b23f-aa8a0f34399f" locStartPos="16" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="5b665375-5fb8-3abf-b9e3-8856daf557b3" locType="sr" locEndPos="33" urgent="true" hash="225911240" locEndLn="123" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="1997690254" ln="123" srcRngStartPos="16" srcRngEndPos="33" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="123" srcRngEndLn="123" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 123] Duplicated code in file: 'Bank.cs'" rngLn="123"/>
+        <ElDesc lineHash="1997690254" ln="133" srcRngStartPos="16" srcRngEndPos="33" locRef="2" locType="sr" srcRnghash="225911240" srcRngStartln="133" srcRngEndLn="133" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" desc="[Line 133] Duplicated code in file: 'Bank.cs'" rngLn="133"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated implementation of method: '{ return _currencyInfo; }'" ln="27" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/BankAccount.cs" locStartln="27" sev="2" auth="test" locRef="3" rule="CDD.DUPM" lnHash="1629195772" rule.header="Avoid method duplication" tool=".test" lineHash="1629195772" unbViolId="ea49294f-4bdc-3278-9b11-b9f2f8d8f1eb" locStartPos="47" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="671ddb8b-0ff7-3cbc-98a2-538b15ec53ea" locType="sr" locEndPos="72" urgent="true" hash="33954980" locEndLn="27" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="1629195772" ln="27" srcRngStartPos="47" srcRngEndPos="72" locRef="3" locType="sr" srcRnghash="33954980" srcRngStartln="27" srcRngEndLn="27" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/BankAccount.cs" desc="[Line 27] Duplicated method in file: 'BankAccount.cs'" rngLn="27"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated implementation of method: '{ return _number; }'" ln="31" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/BankAccount.cs" locStartln="31" sev="2" auth="test" locRef="3" rule="CDD.DUPM" lnHash="863065907" rule.header="Avoid method duplication" tool=".test" lineHash="863065907" unbViolId="2c3f6218-025e-3186-bf00-fe57dde831f1" locStartPos="42" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="95448b53-c782-396f-8aad-d12efd6058b1" locType="sr" locEndPos="61" urgent="true" hash="33954980" locEndLn="31" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="863065907" ln="31" srcRngStartPos="42" srcRngEndPos="61" locRef="3" locType="sr" srcRnghash="33954980" srcRngStartln="31" srcRngEndLn="31" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/BankAccount.cs" desc="[Line 31] Duplicated method in file: 'BankAccount.cs'" rngLn="31"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated implementation of method 'Transfer' : '{'" ln="39" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/BankAccount.cs" locStartln="39" sev="2" auth="test" locRef="3" rule="CDD.DUPM" lnHash="1508372603" rule.header="Avoid method duplication" tool=".test" lineHash="1508372603" unbViolId="a85b57b8-8327-3651-93c0-3c270c5fdc09" locStartPos="8" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="0304156b-3b3a-33ea-9407-37e1324724e2" locType="sr" locEndPos="9" urgent="true" hash="33954980" locEndLn="39" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="1508372603" ln="39" srcRngStartPos="8" srcRngEndPos="9" locRef="3" locType="sr" srcRnghash="33954980" srcRngStartln="39" srcRngEndLn="39" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/BankAccount.cs" desc="[Line 39] Duplicated method in file: 'BankAccount.cs'" rngLn="39"/>
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated code: { return input; }" ln="25" locFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/CurrencyExchangeConverter.cs" locStartln="25" sev="3" auth="test" locRef="5" rule="CDD.DUPC" lnHash="1178724475" rule.header="Avoid code duplication" tool=".test" lineHash="1178724475" unbViolId="735858de-a9a5-35cc-8a39-da52ad25d2e0" locStartPos="12" analyzer="com.parasoft.dottest.dupcode" lang="dotnet" violId="b3280599-d380-3772-9438-d6ba3642710e" locType="sr" locEndPos="13" urgent="true" hash="2123378625" locEndLn="27" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="1178724475" ln="25" srcRngStartPos="12" srcRngEndPos="13" locRef="5" locType="sr" srcRnghash="2123378625" srcRngStartln="25" srcRngEndLn="27" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/CurrencyExchangeConverter.cs" desc="[Line 25] Duplicated code in file: 'CurrencyExchangeConverter.cs'" rngLn="25"/>
+        <ElDesc lineHash="1178724475" ln="38" srcRngStartPos="12" srcRngEndPos="13" locRef="5" locType="sr" srcRnghash="2123378625" srcRngStartln="38" srcRngEndLn="40" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/CurrencyExchangeConverter.cs" desc="[Line 38] Duplicated code in file: 'CurrencyExchangeConverter.cs'" rngLn="38"/>
+        <ElDesc lineHash="1178724475" ln="56" srcRngStartPos="12" srcRngEndPos="13" locRef="5" locType="sr" srcRnghash="2123378625" srcRngStartln="56" srcRngEndLn="58" srcRngFile="BankExample.NET/Parasoft.Dottest.Examples.Bank/CurrencyExchangeConverter.cs" desc="[Line 56] Duplicated code in file: 'CurrencyExchangeConverter.cs'" rngLn="56"/>
+      </ElDescList>
+    </DupViol>
+  </StdViols>
+
+      <TestedFilesDetails>
+         <Total name="Total (Suppressed)" supp="0" total="19">
+            <Project id="Parasoft.Dottest.Examples.Bank" name="Parasoft.Dottest.Examples.Bank" supp="0" total="42">
+               <Res loc="BankExample.NET/Parasoft.Dottest.Examples.Bank/AccountNumber.cs" locRef="1" locType="sr" name="AccountNumber.cs" supp="0" total="4"/>
+               <Res loc="BankExample.NET/Parasoft.Dottest.Examples.Bank/Bank.cs" locRef="2" locType="sr" name="Bank.cs" supp="0" total="10"/>
+               <Res loc="BankExample.NET/Parasoft.Dottest.Examples.Bank/BankAccount.cs" locRef="3" locType="sr" name="BankAccount.cs" supp="0" total="3"/>
+               <Res loc="BankExample.NET/Parasoft.Dottest.Examples.Bank/BankUser.cs" locRef="4" locType="sr" name="BankUser.cs" supp="0" total="0"/>
+               <Res loc="BankExample.NET/Parasoft.Dottest.Examples.Bank/CurrencyExchangeConverter.cs" locRef="5" locType="sr" name="CurrencyExchangeConverter.cs" supp="0" total="1"/>
+            </Project>
+         </Total>
+      </TestedFilesDetails>
+   </CodingStandards>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>
