@@ -3,7 +3,7 @@
     <virtualPath>.*Saxon\-HE\-12\.3\.jar</virtualPath>
     <externalReferences>
       <reference type="other">
-        <url>https://www.saxonica.com/documentation12/index.html#!conditions</url>
+        <url>https://central.sonatype.com/artifact/net.sf.saxon/Saxon-HE/12.3</url>
       </reference>
     </externalReferences>
   </component>
