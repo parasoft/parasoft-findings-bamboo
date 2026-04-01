@@ -28,7 +28,37 @@ public class ReportCollectorTest {
             TestCollectionResult result = reportCollector.collect(unitTestReport);
 
             assertNotNull(result);
-            assertEquals(8 ,result.getSuccessfulTestResults().size());
+            assertEquals(8, result.getSuccessfulTestResults().size());
+            assertEquals(0, result.getFailedTestResults().size());
+            assertEquals(0, result.getSkippedTestResults().size());
+        } catch (Exception e) {
+            fail("Should not reach here");
+        }
+    }
+
+    @Test
+    public void testCollect_parseUnitTestReport_jTest_2025_2_0_unit_no_ExecutedTestsDetails_tag() {
+        try {
+            File unitTestReport = new File("src/test/resources/reports/jTest_2025.2.0_unit_no_ExecutedTestsDetails_tag.xml");
+            TestCollectionResult result = reportCollector.collect(unitTestReport);
+
+            assertNotNull(result);
+            assertEquals(0 ,result.getSuccessfulTestResults().size());
+            assertEquals(0, result.getFailedTestResults().size());
+            assertEquals(0, result.getSkippedTestResults().size());
+        } catch (Exception e) {
+            fail("Should not reach here");
+        }
+    }
+
+    @Test
+    public void testCollect_parseUnitTestReport_jTest_2025_2_0_unit_zero_total_test() {
+        try {
+            File unitTestReport = new File("src/test/resources/reports/jTest_2025.2.0_unit_zero_total_test.xml");
+            TestCollectionResult result = reportCollector.collect(unitTestReport);
+
+            assertNotNull(result);
+            assertEquals(0, result.getSuccessfulTestResults().size());
             assertEquals(0, result.getFailedTestResults().size());
             assertEquals(0, result.getSkippedTestResults().size());
         } catch (Exception e) {
@@ -43,8 +73,38 @@ public class ReportCollectorTest {
             TestCollectionResult result = reportCollector.collect(soaTestReport);
 
             assertNotNull(result);
-            assertEquals(5 ,result.getFailedTestResults().size());
-            assertEquals(0 ,result.getSuccessfulTestResults().size());
+            assertEquals(5, result.getFailedTestResults().size());
+            assertEquals(0, result.getSuccessfulTestResults().size());
+            assertEquals(0, result.getSkippedTestResults().size());
+        } catch (Exception e) {
+            fail("Should not reach here");
+        }
+    }
+
+    @Test
+    public void testCollect_parseSOAtestReport_SOAtest_functional_2025_3_0_no_ExecutedTestsDetails_tag() {
+        try {
+            File soaTestReport = new File("src/test/resources/reports/SOAtest_functional_2025.3.0_no_ExecutedTestsDetails_tag.xml");
+            TestCollectionResult result = reportCollector.collect(soaTestReport);
+
+            assertNotNull(result);
+            assertEquals(0, result.getFailedTestResults().size());
+            assertEquals(0, result.getSuccessfulTestResults().size());
+            assertEquals(0, result.getSkippedTestResults().size());
+        } catch (Exception e) {
+            fail("Should not reach here");
+        }
+    }
+
+    @Test
+    public void testCollect_parseSOAtestReport_SOAtest_functional_2025_3_0_zero_total_test() {
+        try {
+            File soaTestReport = new File("src/test/resources/reports/SOAtest_functional_2025.3.0_zero_total_test.xml");
+            TestCollectionResult result = reportCollector.collect(soaTestReport);
+
+            assertNotNull(result);
+            assertEquals(0, result.getFailedTestResults().size());
+            assertEquals(0, result.getSuccessfulTestResults().size());
             assertEquals(0, result.getSkippedTestResults().size());
         } catch (Exception e) {
             fail("Should not reach here");
@@ -68,9 +128,9 @@ public class ReportCollectorTest {
             File staticAnalysisReport = new File("src/test/resources/reports/cobertura_report.xml");
             TestCollectionResult result = reportCollector.collect(staticAnalysisReport);
 
-            assertEquals(0 ,result.getSuccessfulTestResults().size());
-            assertEquals(0 ,result.getFailedTestResults().size());
-            assertEquals(0 ,result.getSkippedTestResults().size());
+            assertEquals(0, result.getSuccessfulTestResults().size());
+            assertEquals(0, result.getFailedTestResults().size());
+            assertEquals(0, result.getSkippedTestResults().size());
         } catch (Exception e) {
             fail("Should not reach here");
         }
