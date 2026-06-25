@@ -2,7 +2,7 @@
 
     <!-- Describe names and versions of compatible products -->
     <compatibility>
-        <product name="bamboo" min="6.1" max="10.2" />
+        <product name="bamboo" min="6.1" max="12.1" />
     </compatibility>
 
     <!-- Describe your app logo and banner. The banner is only displayed in the UPM. -->
