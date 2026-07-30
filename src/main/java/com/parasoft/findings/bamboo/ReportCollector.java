@@ -19,7 +19,7 @@ package com.parasoft.findings.bamboo;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,7 +29,9 @@ import java.util.Set;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.transform.stax.StAXSource;
 import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
@@ -55,7 +57,14 @@ import com.atlassian.bamboo.build.test.junit.JunitTestResultsParser;
 public class ReportCollector implements TestReportCollector {
     private static final Logger log = Logger.getLogger(ReportCollector.class);
     private static final XsltErrorListener xsltErrorListener = new XsltErrorListener();
-    private static final XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+    private static final XMLInputFactory xmlInputFactory = createXmlInputFactory();
+
+    private static XMLInputFactory createXmlInputFactory() {
+        XMLInputFactory factory = XMLInputFactory.newFactory();
+        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        factory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
+        return factory;
+    }
 
     public ReportCollector() {
     }
@@ -78,19 +87,25 @@ public class ReportCollector implements TestReportCollector {
     }
 
     private InputStream getInputStream(File file, String xslFile)
-            throws SaxonApiException, FileNotFoundException {
-        StreamSource xml = new StreamSource(new FileInputStream(file));
-        StreamSource xsl = new StreamSource(getClass().getResourceAsStream(xslFile));
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Processor processor = new Processor(false);
-
-        XsltCompiler compiler = processor.newXsltCompiler();
-        XsltExecutable executable = compiler.compile(xsl);
-        Serializer target = processor.newSerializer(baos);
-        Xslt30Transformer transformer = executable.load30();
-        transformer.setErrorListener(xsltErrorListener);
-        transformer.transform(xml, target);
-        return new ByteArrayInputStream(baos.toByteArray());
+            throws SaxonApiException, IOException, XMLStreamException {
+        try (InputStream input = new FileInputStream(file);
+                InputStream xslInput = getClass().getResourceAsStream(xslFile)) {
+            XMLStreamReader xmlReader = xmlInputFactory.createXMLStreamReader(input);
+            try {
+                StreamSource xsl = new StreamSource(xslInput);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                Processor processor = new Processor(false);
+                XsltCompiler compiler = processor.newXsltCompiler();
+                XsltExecutable executable = compiler.compile(xsl);
+                Serializer target = processor.newSerializer(baos);
+                Xslt30Transformer transformer = executable.load30();
+                transformer.setErrorListener(xsltErrorListener);
+                transformer.transform(new StAXSource(xmlReader), target);
+                return new ByteArrayInputStream(baos.toByteArray());
+            } finally {
+                xmlReader.close();
+            }
+        }
     }
 
     @Override
@@ -98,11 +113,10 @@ public class ReportCollector implements TestReportCollector {
         return new HashSet<>(Collections.singleton("xml")); //$NON-NLS-1$
     }
 
-    private ReportType getReportType(File from) throws XMLStreamException {
-        StreamSource xml = new StreamSource(from);
+    private ReportType getReportType(File from) throws XMLStreamException, IOException {
         XMLEventReader reader = null;
-        try {
-            reader = xmlInputFactory.createXMLEventReader(xml);
+        try (InputStream input = new FileInputStream(from)) {
+            reader = xmlInputFactory.createXMLEventReader(input);
             while (reader.hasNext()) {
                 XMLEvent event = reader.nextEvent();
                 switch (event.getEventType()) {
