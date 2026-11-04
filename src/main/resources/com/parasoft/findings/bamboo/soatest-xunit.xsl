@@ -12,6 +12,7 @@
     <xsl:variable name="isNoTest" select="count(/ResultsSession/Exec) = 1 and count(/ResultsSession/Exec/ExecutedTestsDetails) = 0"/>
     <xsl:variable name="isFunctionalResult" select="/ResultsSession/@toolName = 'SOAtest'"/>
     <xsl:variable name="isLegacyMode" select="count(/ResultsSession/ExecutedTestsDetails) = 1"/>
+    <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/ResultsSession/@pipelineBuildWorkingDirectory"/></xsl:param>
 
     <xsl:template match="/">
         <xsl:choose>
@@ -244,6 +245,7 @@
             <xsl:call-template name="addTimeAttr">
                 <xsl:with-param name="time" select="$time"/>
             </xsl:call-template>
+            <xsl:call-template name="addFileAttr" />
 
             <xsl:if test="count($funcViols) > 0">
                 <xsl:choose>
@@ -435,6 +437,7 @@
             <xsl:call-template name="addTimeAttr">
                 <xsl:with-param name="time" select="$time"/>
             </xsl:call-template>
+            <xsl:call-template name="addFileAttr" />
 
             <xsl:if test="count($funcViols) > 0">
                 <xsl:choose>
@@ -497,7 +500,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- ================= replace the last occurrence of 'replace' to 'by' in 'text' ================== -->
+    <!-- ================= replace the last occurrence of 'replace' with 'by' in 'text' ================== -->
     <xsl:template name="replace-last">
         <xsl:param name="text" />
         <xsl:param name="replace" />
@@ -523,7 +526,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- ================= replace the all occurrences of 'replace' to 'by' in 'text' ================== -->
+    <!-- ================= replace all the occurrences of 'replace' with 'by' in 'text' ================== -->
     <xsl:template name="string-replace-all">
         <xsl:param name="text" />
         <xsl:param name="replace" />
@@ -564,6 +567,55 @@
                 </xsl:attribute>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="addFileAttr">
+        <xsl:attribute name="file">
+            <xsl:apply-templates select="/ResultsSession/Scope/Locations/Loc">
+                <xsl:with-param name="testLocRef" select="ancestor::TestSuite[position()=1]/@locRef"/>
+            </xsl:apply-templates>
+        </xsl:attribute>
+    </xsl:template>
+
+    <xsl:template match="Loc">
+        <xsl:param name="testLocRef"/>
+        <xsl:if test="$testLocRef = @locRef">
+            <xsl:variable name="uncodedPipelineBuildWorkingDirectory">
+                <xsl:if test="string($pipelineBuildWorkingDirectory) != ''">
+                    <xsl:value-of select="concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/')"/>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="encodedPipelineBuildWorkingDirectory">
+                <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
+                    <!-- Replace % with %25 and space with %20 to get an encoded path-->
+                    <xsl:value-of select="replace(replace($uncodedPipelineBuildWorkingDirectory, '%', '%25'), ' ', '%20')"/>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="processedPipelineBuildWorkingDirectory">
+                <xsl:choose>
+                    <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $uncodedPipelineBuildWorkingDirectory)">
+                        <xsl:value-of select="$uncodedPipelineBuildWorkingDirectory"/>
+                    </xsl:when>
+                    <!-- Using encoded pipeline build working directory when the uri attribute of <Loc> tag in Parasoft tool report(e.g. jtest report) is encoded -->
+                    <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $encodedPipelineBuildWorkingDirectory)">
+                        <xsl:value-of select="$encodedPipelineBuildWorkingDirectory"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="''"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="isExternalReport" select="$processedPipelineBuildWorkingDirectory = ''"/>
+            <xsl:choose>
+                <xsl:when test="$isExternalReport">
+                    <xsl:value-of select="@uri"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- Get relative source file path -->
+                    <xsl:value-of select="concat('./', substring-after(@uri, $processedPipelineBuildWorkingDirectory))"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template name="addHostnameAttr">

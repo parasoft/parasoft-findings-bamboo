@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResultsSession toolName="SOAtest" time="2026-10-27T01:02:03" pipelineBuildWorkingDirectory="/workspace/project space%">
+  <Scope><Locations>
+    <Loc locRef="1" uri="file:///workspace/project space%/tests/plain.tst"/>
+    <Loc locRef="2" uri="file:///workspace/project%20space%25/tests/encoded%20suite.tst"/>
+    <Loc locRef="3" uri="file:///external/other.tst"/>
+  </Locations></Scope>
+  <Exec><ExecutedTestsDetails><Total total="4" fail="0" time="1:02:03.004"><Project name="regression">
+    <TestSuite name="Plain suite" id="wk:///regression/plain.tst#suite" locRef="1" total="1" time="1:02:03.004">
+      <Test name="Plain" id="wk:///regression/plain.tst#suite#test" total="1" time="1:02:03.004"/>
+    </TestSuite>
+    <TestSuite name="Encoded suite" id="wk:///regression/encoded.tst#suite" locRef="2" total="2" time="0:00:02.000">
+      <Test name="Parameterized" id="wk:///regression/encoded.tst#suite#test" total="2" time="0:00:02.000">
+        <TestCase id="one" time="0:00:00.125"/><TestCase id="two" time="0:00:01.875"/>
+      </Test>
+    </TestSuite>
+    <TestSuite name="External suite" id="wk:///regression/external.tst#suite" locRef="3" total="1">
+      <Test name="External" id="wk:///regression/external.tst#suite#test" total="1"/>
+    </TestSuite>
+  </Project></Total></ExecutedTestsDetails><ExecViols/></Exec>
+</ResultsSession>

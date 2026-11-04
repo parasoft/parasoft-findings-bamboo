@@ -31,6 +31,7 @@ public class SoatestXunitTransformationTest {
     private static final String EXECUTION = "SOAtest_functional_execution_violations.xml";
     private static final String VISUAL = "soatest_visual_difference.xml";
     private static final String EDGES = "association_edges.xml";
+    private static final String PATHS = "platform_paths.xml";
     private static final String CHANGE = "soatest_parabank_change_impact_";
     private static final String[] MODES = {
         "with_all_functional_tests", "without_functional_tests", "with_one_functional_test"
@@ -53,7 +54,7 @@ public class SoatestXunitTransformationTest {
         try (InputStream source = stylesheet.openStream()) {
             templates = factory.newTemplates(new StreamSource(source, stylesheet.toExternalForm()));
         }
-        String[] filenames = {EXECUTION, VISUAL, EDGES,
+        String[] filenames = {EXECUTION, VISUAL, EDGES, PATHS,
             CHANGE + MODES[0] + ".xml", CHANGE + MODES[1] + ".xml", CHANGE + MODES[2] + ".xml"};
         for (String filename : filenames) {
             URL report = SoatestXunitTransformationTest.class.getResource("/reports/soatest-regression/" + filename);
@@ -91,6 +92,17 @@ public class SoatestXunitTransformationTest {
                 assertEquals(failed, Integer.parseInt(suite.getAttribute("failures")), context);
             }
         }
+    }
+
+    @Test
+    public void genericSourcePathsPreserveRelativeEncodedAndExternalLocations() {
+        counts(PATHS, 3, 4, 0);
+        assertEquals("./tests/plain.tst", testcase(PATHS, "Plain suite/Plain").getAttribute("file"));
+        for (String value : new String[] {"one", "two"}) {
+            assertEquals("./tests/encoded%20suite.tst",
+                testcase(PATHS, "Encoded suite/Parameterized[" + value + "]").getAttribute("file"));
+        }
+        assertEquals("file:///external/other.tst", testcase(PATHS, "External suite/External").getAttribute("file"));
     }
 
     @Test
