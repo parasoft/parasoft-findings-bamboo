@@ -3,10 +3,16 @@
 
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
+    <xsl:key name="executionViolationsByTest" match="ResultsSession/Exec/ExecViols/*[@testId]" use="@testId" />
+    <!-- Prefix the test ID with its length so delimiters inside test/case IDs cannot collide. -->
+    <xsl:key name="executionViolationsByCase" match="ResultsSession/Exec/ExecViols/*[@testId and @tcId]"
+             use="concat(string-length(@testId), ':', @testId, @tcId)" />
+
     <xsl:variable name="newLine" select="'&#xA;'" />
     <xsl:variable name="isNoTest" select="count(/ResultsSession/Exec) = 1 and count(/ResultsSession/Exec/ExecutedTestsDetails) = 0"/>
     <xsl:variable name="isFunctionalResult" select="/ResultsSession/@toolName = 'SOAtest'"/>
     <xsl:variable name="isLegacyMode" select="count(/ResultsSession/ExecutedTestsDetails) = 1"/>
+    <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/ResultsSession/@pipelineBuildWorkingDirectory"/></xsl:param>
 
     <xsl:template match="/">
         <xsl:choose>
@@ -239,6 +245,7 @@
             <xsl:call-template name="addTimeAttr">
                 <xsl:with-param name="time" select="$time"/>
             </xsl:call-template>
+            <xsl:call-template name="addFileAttr" />
 
             <xsl:if test="count($funcViols) > 0">
                 <xsl:choose>
@@ -300,6 +307,14 @@
         <xsl:param name="depth" />
 
         <xsl:variable name="testID" select="$testNode/@id" />
+        <!-- Change Advisor can run without functional execution. Count each emitted testcase once,
+             including tests that have only a change-impact total, and use the writer's failure associations. -->
+        <xsl:variable name="singleCaseTests" select="$testNode//Test[@total &gt; 0 or @changeTotal &gt; 0][count(TestCase) &lt;= 1]" />
+        <xsl:variable name="multipleCaseTests" select="$testNode//Test[@total &gt; 0 or @changeTotal &gt; 0][count(TestCase) &gt; 1]/TestCase" />
+        <xsl:variable name="singleCaseFailures"
+                      select="count($singleCaseTests[@id][key('executionViolationsByTest', @id)])" />
+        <xsl:variable name="multipleCaseFailures"
+                      select="count($multipleCaseTests[@id and ../@id][key('executionViolationsByCase', concat(string-length(../@id), ':', ../@id, @id))])" />
 
         <xsl:variable name="rootTestName">
             <xsl:call-template name="parent_path_to_test">
@@ -325,7 +340,7 @@
             </xsl:call-template>
         </xsl:variable>
 
-        <xsl:variable name="totalTests" select="$testNode/@total" />
+        <xsl:variable name="totalTests" select="count($singleCaseTests) + count($multipleCaseTests)" />
 
         <testsuite name="{$rootTestName2}" tests="{$totalTests}" id="{position()}" package="">
             <xsl:call-template name="addTimeAttr" >
@@ -333,11 +348,11 @@
             </xsl:call-template>
             <xsl:call-template name="addHostnameAttr"/>
             <xsl:call-template name="addTimestampAttr"/>
-            <xsl:call-template name="addFailuresAttr"/>
+            <xsl:attribute name="failures"><xsl:value-of select="$singleCaseFailures + $multipleCaseFailures" /></xsl:attribute>
             <xsl:call-template name="addErrorsAttr"/>
 
             <properties/>
-            <xsl:for-each select="./Test[@total > 0] | ./TestSuite[@total > 0]">
+            <xsl:for-each select="./Test[@total > 0 or @changeTotal > 0] | ./TestSuite[@total > 0 or @changeTotal > 0]">
                 <xsl:call-template name="TestCaseInfoWar">
                     <xsl:with-param name="testNode" select="." />
                     <xsl:with-param name="depth" select="($depth) + 1" />
@@ -361,7 +376,7 @@
         <xsl:variable name="testID" select="$testNode/@id" />
 
         <xsl:if test="$isTestSuite">
-            <xsl:for-each select="./Test[@total > 0] | ./TestSuite[@total > 0]">
+            <xsl:for-each select="./Test[@total > 0 or @changeTotal > 0] | ./TestSuite[@total > 0 or @changeTotal > 0]">
                 <xsl:call-template name="TestCaseInfoWar">
                     <xsl:with-param name="testNode" select="." />
                     <xsl:with-param name="depth" select="($depth) + 1" />
@@ -383,7 +398,9 @@
                 <xsl:when test="$testCasesNumber > 1">
                     <xsl:for-each select="./TestCase">
                         <xsl:variable name="testParams" select="@id" />
-                        <xsl:variable name="funcViols" select="/ResultsSession/Exec/ExecViols/FuncViol[@testId=$testID and @tcId=$testParams]" />
+                        <!-- Include all execution violation kinds, such as VisualDifference and ChangeImpact,
+                             while keeping failures associated with this test case. -->
+                        <xsl:variable name="funcViols" select="/ResultsSession/Exec/ExecViols/*[@testId=$testID and @tcId=$testParams]" />
 
                         <xsl:call-template name="writeXUnitTestCaseWar">
                             <xsl:with-param name="testName" select="concat($testName,'[',$testParams,']')" />
@@ -394,7 +411,8 @@
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:variable name="funcViols" select="/ResultsSession/Exec/ExecViols/FuncViol[@testId=$testID]" />
+                    <!-- Single-case tests also need every execution violation kind. -->
+                    <xsl:variable name="funcViols" select="/ResultsSession/Exec/ExecViols/*[@testId=$testID]" />
                     <xsl:call-template name="writeXUnitTestCaseWar">
                         <xsl:with-param name="testName" select="$testName" />
                         <xsl:with-param name="funcViols" select="$funcViols" />
@@ -419,16 +437,18 @@
             <xsl:call-template name="addTimeAttr">
                 <xsl:with-param name="time" select="$time"/>
             </xsl:call-template>
+            <xsl:call-template name="addFileAttr" />
 
             <xsl:if test="count($funcViols) > 0">
                 <xsl:choose>
                     <xsl:when test="count($funcViols) > 1">
                         <xsl:variable name="combinedFailures">
                             <xsl:for-each select="$funcViols">
-                                <xsl:if test="position() > 1 and string-length(@msg) > 0">
+                                <xsl:if test="position() > 1">
                                     <xsl:value-of select="concat($newLine, $newLine)" />
                                 </xsl:if>
-                                <xsl:value-of select="@msg" />
+                                <xsl:value-of select="concat('==== ERROR ====', $newLine)" />
+                                <xsl:call-template name="executionViolationMessage" />
                                 <xsl:if test="string-length(@violationDetails) > 0">
                                     <xsl:value-of select="concat($newLine, @violationDetails)" />
                                 </xsl:if>
@@ -439,15 +459,30 @@
                         </failure>
                     </xsl:when>
                     <xsl:otherwise>
-                        <failure message="{$funcViols/@msg}" type="Failure">
-                            <xsl:if test="string-length($funcViols/@violationDetails) > 0">
-                                <xsl:value-of select="$funcViols/@violationDetails" />
-                            </xsl:if>
-                        </failure>
+                        <xsl:for-each select="$funcViols">
+                            <failure type="Failure">
+                                <xsl:attribute name="message">
+                                    <xsl:call-template name="executionViolationMessage" />
+                                </xsl:attribute>
+                                <xsl:value-of select="@violationDetails" />
+                            </failure>
+                        </xsl:for-each>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:if>
         </testcase>
+    </xsl:template>
+
+    <xsl:template name="executionViolationMessage">
+        <!-- Preserve common SOAtest diagnostics; use the kind as a summary when msg is absent. -->
+        <xsl:choose>
+            <xsl:when test="string-length(normalize-space(@msg)) > 0">
+                <xsl:value-of select="@msg" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="local-name()" />
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <!-- ===================== get parent path for test =========== -->
@@ -465,7 +500,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- ================= replace the last occurrence of 'replace' to 'by' in 'text' ================== -->
+    <!-- ================= replace the last occurrence of 'replace' with 'by' in 'text' ================== -->
     <xsl:template name="replace-last">
         <xsl:param name="text" />
         <xsl:param name="replace" />
@@ -491,7 +526,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- ================= replace the all occurrences of 'replace' to 'by' in 'text' ================== -->
+    <!-- ================= replace all the occurrences of 'replace' with 'by' in 'text' ================== -->
     <xsl:template name="string-replace-all">
         <xsl:param name="text" />
         <xsl:param name="replace" />
@@ -532,6 +567,55 @@
                 </xsl:attribute>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="addFileAttr">
+        <xsl:attribute name="file">
+            <xsl:apply-templates select="/ResultsSession/Scope/Locations/Loc">
+                <xsl:with-param name="testLocRef" select="ancestor::TestSuite[position()=1]/@locRef"/>
+            </xsl:apply-templates>
+        </xsl:attribute>
+    </xsl:template>
+
+    <xsl:template match="Loc">
+        <xsl:param name="testLocRef"/>
+        <xsl:if test="$testLocRef = @locRef">
+            <xsl:variable name="uncodedPipelineBuildWorkingDirectory">
+                <xsl:if test="string($pipelineBuildWorkingDirectory) != ''">
+                    <xsl:value-of select="concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/')"/>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="encodedPipelineBuildWorkingDirectory">
+                <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
+                    <!-- Replace % with %25 and space with %20 to get an encoded path-->
+                    <xsl:value-of select="replace(replace($uncodedPipelineBuildWorkingDirectory, '%', '%25'), ' ', '%20')"/>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="processedPipelineBuildWorkingDirectory">
+                <xsl:choose>
+                    <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $uncodedPipelineBuildWorkingDirectory)">
+                        <xsl:value-of select="$uncodedPipelineBuildWorkingDirectory"/>
+                    </xsl:when>
+                    <!-- Using encoded pipeline build working directory when the uri attribute of <Loc> tag in Parasoft tool report(e.g. jtest report) is encoded -->
+                    <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $encodedPipelineBuildWorkingDirectory)">
+                        <xsl:value-of select="$encodedPipelineBuildWorkingDirectory"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="''"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="isExternalReport" select="$processedPipelineBuildWorkingDirectory = ''"/>
+            <xsl:choose>
+                <xsl:when test="$isExternalReport">
+                    <xsl:value-of select="@uri"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- Get relative source file path -->
+                    <xsl:value-of select="concat('./', substring-after(@uri, $processedPipelineBuildWorkingDirectory))"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template name="addHostnameAttr">

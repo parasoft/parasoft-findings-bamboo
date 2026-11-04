@@ -3,6 +3,8 @@ package com.parasoft.findings.bamboo;
 import com.atlassian.bamboo.build.test.TestCollectionResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.MockitoAnnotations;
 
 import net.sf.saxon.s9api.SaxonApiException;
@@ -120,6 +122,25 @@ public class ReportCollectorTest {
         } catch (Exception e) {
             fail("Should not reach here");
         }
+    }
+
+    @ParameterizedTest(name = "{0}: {1} passed, {2} failed")
+    @CsvSource({
+        "SOAtest_functional_execution_violations.xml, 4, 10",
+        "soatest_parabank_change_impact_with_one_functional_test.xml, 0, 7",
+        "soatest_parabank_change_impact_without_functional_tests.xml, 0, 7",
+        "soatest_parabank_change_impact_with_all_functional_tests.xml, 0, 7",
+        "soatest_visual_difference.xml, 525, 1",
+        "association_edges.xml, 5, 3",
+        "platform_paths.xml, 4, 0"
+    })
+    public void testCollect_genericSoatestReports(String filename, int passed, int failed) throws Exception {
+        // Exercise Bamboo's actual JUnit parser: the generic stylesheet also emits source-file attributes.
+        TestCollectionResult result = reportCollector.collect(
+                new File("src/test/resources/reports/soatest-regression/" + filename));
+        assertEquals(passed, result.getSuccessfulTestResults().size(), filename);
+        assertEquals(failed, result.getFailedTestResults().size(), filename);
+        assertEquals(0, result.getSkippedTestResults().size(), filename);
     }
 
     @Test
