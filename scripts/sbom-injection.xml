@@ -1,9 +1,9 @@
 <components>
   <component>
-    <virtualPath>.*Saxon\-HE\-12\.3\.jar</virtualPath>
+    <virtualPath>.*Saxon\-HE\-12\.10\.jar</virtualPath>
     <externalReferences>
       <reference type="other">
-        <url>https://central.sonatype.com/artifact/net.sf.saxon/Saxon-HE/12.3</url>
+        <url>https://central.sonatype.com/artifact/net.sf.saxon/Saxon-HE/12.10</url>
       </reference>
     </externalReferences>
   </component>
